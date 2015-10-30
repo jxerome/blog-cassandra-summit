@@ -52,6 +52,7 @@ Du café renversé, un cyclone, un blender, un singe cahotique venu de chez Netf
 La preuve qu'on peut détruire un cluster Cassandra ; mais il faut y mettre du sien.
 
 La keynote est visible sur http://youtu.be/QfyRyIW4rYo[YouTube].
+
 ////
 Vérifier http://youtu.be/QfyRyIW4rYo[YouTube] ou http://youtu.be/ioZugO2MEAk[YouTube]
 ////
