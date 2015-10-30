@@ -53,10 +53,6 @@ La preuve qu'on peut détruire un cluster Cassandra ; mais il faut y mettre du s
 
 La keynote est visible sur http://youtu.be/QfyRyIW4rYo[YouTube].
 
-////
-Vérifier http://youtu.be/QfyRyIW4rYo[YouTube] ou http://youtu.be/ioZugO2MEAk[YouTube]
-////
-
 == Certification Cassandra
 
 La première journée était consacrée à un nouveau programme de certification développé par DataStax en partenariat avec O'Reilly.
