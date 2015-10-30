@@ -1,0 +1,387 @@
+= Cassandra Summit 2015
+Jérôme Mainaud <jmainaud@ippon.fr>
+v1.0, 2015-10-19
+
+J'ai eu la chance d'être invité pour présenter mon exposé « Multi-criteria Queries on a Cassandra Application » au Cassandra Summit cette année.
+La conférence s'est déroulée du 22 au 24 septembre à Santa Clara, au fond de la Silicon Valley.
+C'est la grosse conférence qui réuni toute la communauté Cassandra.
+Si elle est organisée par DataStax, les présentations sont choisies par la communauté selon un vote démocratique.
+
+J'avais prévu d'écrire un article en retour de la conférence pour raconter ce qui s'est passé.
+Un brouillon a même été commencé.
+Cependant, une nouvelle mission dans une banque centrale a retardé l'écriture de ce document.
+Et c'est une chance, car au lieu de vous raconter la conférence telle que je l'ai vécue et de façon chronologique, je vais pouvoir prendre le recul et mettre ces éléments en regard d'évènements plus récents.
+
+== La conférence, ambiance, anecdotes et goodies
+
+Quelques mots sur la conférence dans son ensemble.
+
+Cette année le Cassandra Summit a batu tous ses records.
+6100 visiteurs et 5000 téléspectateurs, contre 2600 et 1000 l'an dernier.
+C'est la première année qu'ils fonctionnent à guichet fermé.
+Patrick McFadin a d'ailleurs résumé la situation la keynote de lancement:
+
+[quote, Patrick McFradin, Cassandra Summit 2015 Keynote]
+____
+Wow ! There are more people in this room than I knew are using Cassandra !
+____
+
+Le nombre de sessions est passé de 60 à 137.
+Il y avait dix salles en parallèle.
+
+Mon impression d'ensemble c'est que les présentations furent généralement de bonne qualité, mais le niveau technique était rarement élevé.
+Impression partagée avec Matthias Niehoff de Codecentric AG (DE) avec qui j'ai passé la certification architecte DataStax.
+De fait, la conférence était très accessible aux débutants et aux nouveaux utilisateurs, ce qui est bien.
+Et heureusement, certaines présentations étaient un peu plus techniques, mais elles n'étaient pas si nombreuses.
+Si je devais n'en retenir que deux, à part la mienne, je choisirais « Java Driver at Scale » d'Apple et « Making Cassandra Fail » de Christopher Batey.
+
+Côté paillettes, nous avons été gatés également.
+En plus des goodies classiques comme les T-Shirts, verres à bière et autre veroterie largement distribués, les plus beaux cadeaux étaient tirés au sort.
+Rackspace offrait un http://www.lego.com/fr-fr/starwars/products/exclusives/75059sandcrawler[Sandcrawler en lego].
+Et le service recrutement de DataStax un fitbit.
+Un jeu permettant de gagner d'autres cadeaux nécessitait de passer dans tous les stands pour scanner les QR Codes qui y étaient placés.
+Petit extra pour les européens: le premier jour, nous avons été invités pour déjeuner au Levi's Stadium sous prétexte de pouvoir nous servir de la bière et du vin.
+C'est un stade de « football » à côté du centre de conférence digne de tous les superlatifs avec sa galerie de boutiques qui n'ouvre que le temps des matchs.
+
+image::20150923_115920.jpg[Levi's Stadium]
+
+Et bien sur, la keynote d'ouverture a commencé avec un show à l'américaine de Patrick McFadin et Rachel Pedreschi.
+Un beau cluster constitué de deux datacenters de six rasberry pi chacun a été installé sur scène pour la démonstration de l'application de démo de DataStax: VideoKiller.
+Evidemment, la démonstration a tourné court.
+Du café renversé, un cyclone, un blender, un singe cahotique venu de chez Netflix, un incendie et l'action de nos pompiers de service ont eu raison du beau cluster.
+La preuve qu'on peut détruire un cluster Cassandra ; mais il faut y mettre du sien.
+
+La keynote est visible sur http://youtu.be/QfyRyIW4rYo[YouTube].
+////
+Vérifier http://youtu.be/QfyRyIW4rYo[YouTube] ou http://youtu.be/ioZugO2MEAk[YouTube]
+////
+
+== Certification Cassandra
+
+La première journée était consacrée à un nouveau programme de certification développé par DataStax en partenariat avec O'Reilly.
+600 personnes sont venues se former sur Cassandra et son reparties à la fin de la journée avec un certificat.
+C'est une bonne façon de débuter sur le sujet et de devenir rapidement efficace, mais une journée c'est court.
+D'après une de mes sources qui y était et qui connait déjà bien Cassandra, seules les bases peuvent y être abordées.
+
+Cette certification est depuis proposée au plus grand nombre.
+Elle montre la volonté de DataStax de faciliter l'accès aux formations qui a déjà commencé avec la diffusion des formations DataStax sous forme de MOOC.
+C'est une bonne chose car Cassandra est une base qui parait facile à utiliser au premier abord mais qu'il faut maitriser pour éviter les catastrophes.
+Plus il y aura de développeurs et d'administrateurs formés à Cassandra, plus il y aura d'utilisateurs et plus l'écosystème sera riche et vivant.
+
+== Herberger Cassandra
+
+L'hébergement de Cassandra a été un de mes fils conducteurs.
+En effet, Ippon Hosting propose une nouvelle offre d'hébergement Cassandra et tous élément qui permet de proposer le meilleur service à nos clients est le bienvenu.
+
+== Hebergement Cloud
+
+Et justement, la plus grosse annonce de la Keynote, fut l'ouverture d'un partenariat entre DataStax et Microsoft pour la création d'une offre Cassandra sur Azure.
+Scott Guthrie, EVP de Microsoft est venu sur scène pour expliquer les avantages d'Azure et ses 19 centres de calcul répartis dans le monde entier.
+Il a terminé avec la démonstration du déploiement d'un cluster DataStax Enterprise de 90 nœuds en quelques clics dans l'interface web d'Azure.
+Comme toujours chez Microsoft, la démonstration est toujours déconcertante de facilité.
+Il reste à voir le résultat opérationnel, mais se sera un acteur important à n'en pas douter.
+
+De même, Rackspace est venu rappeler son offre Cassandra.
+Ceux qui utilisent la plateforme pourront donc en bénéficier.
+
+=== Matériel
+
+Lorsqu'on souhaite héberger Cassandra ailleurs que dans les nuages, se posera la question du choix du matériel.
+Aussi les constructeurs de matériel étaient présents dans le forum pour présenter leurs machines.
+Parmis HP, mais aussi http://www.supermicro.com[Supermicro].
+Sous ce nom ringard, se cache un fabriquant de matériel d'un très bon rapport qualité prix.
+
+Et pour le prouver, ils ont fait un test de chargement (90%) et de lecture (10%) de 10 To de données issues de capteurs télémétriques.
+Le chassis TwinPro possèdaient 2 nœuds totalisant 128 cœurs, 128 Go de RAM, et 12 SSD Intel de 1,2 Go.
+Les performances sont à la hauteur avec un taux d'écriture oscillant entre 15 et 20000 écritures par secondes et une latence de moins de 600 μs au 75e pourcentile.
+Les lectures ne sont pas en manque avec une latence (P75) de 500 μs débit de 2000 lectures/s, le 99,9% percentile étant de moins de 15 ms.
+Bref, Supermicro est un fabriquant à envisager avant de déployer une offre Cassandra.
+
+=== Mesos
+
+Enfin, j'ai pu assister à une présentation de Cassandra-Mesos.
+Il s'agit d'un plugin pour Mesos qui permet de gérer un cluster Cassandra.
+Il est développé conjointement par Ben Whitehead de Mesosphere et Robert "Snazy" Stupp un commiter Cassandra.
+Open source il est disponible sur https://github.com/mesosphere/cassandra-mesos[GitHub].
+
+Le plugin permet très simplement de créer un cluster Cassandra.
+Il suffit de dimensionner le cluster, puis de déployer les nœuds.
+La seule difficulté pour le plugin est lié à la distinction entre les seed nodes et les autres nœuds.
+Ils doivent être déployés en premier de façon légèrement différente.
+
+Une fois le cluster déployé, le plugin offre des outils pour son administration.
+Une API REST permet:
+* d'ajouter un nœud,
+* d'orchestrer les commandes de maintenance comme repair,
+* de provoquer un redémarrage tournant.
+
+Cependant, il est encore un peu jeune et toutes les fonctionnalités ne sont pas encore disponibles.
+Il manque notamment la gestion de plusieurs datacenters et la mise à jour de Cassandra.
+
+C'est donc un plugin très jeune qui manque de maturité mais qui intéressera les utilisateurs de Mesos pour déployer Cassandra.
+
+== Modélisation
+
+Un des sujets sur lequel je travaille en ce moment, c'est sur les patterns de modélisation des données dans Cassandra.
+C'est donc tout naturellement que je suis allé voir en priorité les exposés qui en parlaient.
+
+Je passe sous silence un exposé sur l'utilisation conjointe de Cassandra avec les bases de données relationnelles.
+Il se limitait à dire que les applications patrimoniales ne seront pas remplacées dans un grand Big Bang et que les deux technologies cohabiteront sans parler les conséquences.
+
+Je parlerai à peine du gars qui avait modéliser ses données sans prendre en compte la taille des partitions.
+Evidemment, lorsque les données se sont accumulées la base était en souffrance et il a du changer sa modélisation tout en cours de route.
+On sens la startup qui est partie sur sa technologie sans trop réfléchir à son modèle de données.
+Mais au moins on a la confirmation que les partitions à ralonge, c'est mal(TM).
+En ce sens, son intervention était utile.
+
+Je ne vous parlerai pas non plus de l'excellente présentation sur la recherche multi-critère avec Cassandra.
+Dont la trame est décrite dans les articles a et b et le diaporama est accessible.
+
+=== Materialized View
+
+Un des sujets du moment, ce sont les vues matérialisées qui doivent sortir avec la version 3.0 de Cassandra.
+Elle ont eu droit à un peu de temps sur la keynote et à une session entière.
+
+Le sujet est déjà connu.
+
+Il s'agit de remplacer la gestion des tables dénormalisées par la création d'une vue matérialisée construite à partir de la table source mais avec une autre clé primaire.
+Contrairement aux index secondaires qui sont locaux, les vues matérialisées fonctionnent globalement et stockent les données dématérialisées.
+Elle fonctionnent en lecture comme des tables classiques et offrent les même performances.
+
+Elle permettent de déléguer la logique de mise à jour (lecture avant écriture, gestion de la concurrence des écritures) à Cassandra.
+La vue matérialisée offre les garanties suivantes:
+
+* Si l'écriture est acquitée, il y a eu au moins CL écritures sur la table *et* les vues.
+* Lors d'une mise à jour, les anciennes valeurs sont nettoyées.
+* Les suppressions sont reportées dans les vues.
+* Les modifications concurrentes sont correctement gérées.
+* La procédure de repair sur la table principale pousse les données dans les vues.
+* Le TTL est reporté sur les données de la vue.
+
+Si les performances de lecture sur une vue sont identiques à celles de la lecture sur une table, il en est autrement des écritures.
+D'après les tests réalisés par DataStax, il faut compter une perte de 10% de bande passante pour chaque vue matérialisée.
+On constate aussi un léger déclin de la performance avec le temps.
+Il s'explique par l'indispensable verrou sur les partitions modifiées qui garanti la validité des données.
+
+Dans tous les cas, les performances sont largement meilleures que lorsqu'un travail équivalent est réalisé du côté de l'application.
+
+Il faut cependant se méfier de quelques éccueils :
+
+* Si des données de la table principale son perdues, la vue ne sera pas mise à jour.
+* Il n'y a pas de read repair entre la table et ses vues.
+* Une lecture locale sur la table source est nécessaire.
+
+Mon sentiment est que les vues matérialisées faciliterons énormément les développements et remplaceront une bonne partie du code de dénormalisation.
+Dans le cas où les données sont immuables et qu'on constaterait des problèmes de performance liées à la lecture avant écriture et aux verrous sur les partitions, la question de revenir à des tables dénormalisée gérées par l'appli pourra se poser.
+
+=== CQRS and Event Sourcing Application with Cassandra
+
+Mathias Niehoff nous a présenté le cas d'une application patrimoniale qui doit être exposée à d'autres applications "Internet Ready" disponibles 24h/24 7j/7.
+De plus, la solution doit être scalable et supporter des centaines de milliers de lectures et des dizaines de milliers d'écriture chaque seconde.
+Evidemment l'application n'est pas capable d'assurer ces contraintes de service et elle ne peut être modifiée à cette fin.
+L'idée est de construire un proxy qui offre encaisse les traitements et offre un service 24*7.
+
+Le proxy cache et restitue les données et les modifications mais ne contient pas de logique métier.
+
+Il a été construit avec une architecture CQRS avec event sourcing.
+Autrement dit, les modifications sont enregistrés sous forme d'évènements qui sont ensuite traités pour construire les vues de lecture.
+Cassandra a été utilisé comme base de données, y compris pour l'event store.
+Ce dernier est une table qui contient tous les évènements partitionnés par type et classé par l'instant de l'évènement.
+Pour éviter d'exploser leur taille, les partitions sont découpées artificiellement en buckets.
+
+Une fois les évènements enregistrés, ils sont envoyés aux unités de traitement via une file Kafka.
+Le traitement est réalisé par Spark qui a été choisi pour sa capacité à monter en charge, sa gestion des pannes et sa bonne intégration avec Cassandra et Kafka.
+
+L'ajout d'une nouvelle vue de lecture est facile :
+
+. Créer la table pour la vue.
+. Créer le job Spark qui la rempli.
+. Déployer le job.
+. Initialiser la vue en rejouant l'historique conservé dans la table des événements.
+    .* Le code utilisé est le même pour l'initialisation et pour le traitement au fil de l'eau.
+. Marquer la vue comme initialisée.
+
+Au final leur proxy dispose de deux chaines, celle qui reçoit les commandes de l'application patrimoniale et construit les vues pour les applications internet.
+Celle qui reçoit les commandes des applications internet et qui produisent des vues vers l'application patrimoniale.
+Les deux chaines présentent cependant un lien.
+Les commandes en provenance des applications internet sont aussi traitées dans la chaine en provenance de l'application patrimoniale pour offrir une vue à jour le temps que la commande soit digérée par cette dernière.
+C'est utile en cas de forte charge ou lorsque l'application en question est arrêtée.
+
+L'ensemble fonctionne bien et monte en charge.
+Par contre, une telle architecture est plus compliquée qu'un simple CRUD.
+Il faut aussi faire attention aux performances des rejeux et à leurs effets de bord.
+Enfin, la donnée mets un certain temps entre l'écriture et l'accès dans les vues de lecture.
+Les modifications concurrentes en deviennent délicates.
+
+http://fr.slideshare.net/planetcassandra/codecentric-ag-cqrs-and-event-sourcing-applications-with-cassandra
+
+=== Modeling the IoT with Titan DB and Cassandra
+
+Les modèles de type graphe sont intéressants.
+C'est un modèle de plus en plus répandu, en particulier grâce à la multiplication des applications globales.
+Mais on le retrouve historiquement pour toutes les applications de navigation.
+Je m'y suis intéressé récemment car un client utilisait un parcours de graphe au lieu d'un algorithme d'apprentissage automatisé pour rapprocher des éléments.
+
+Or les bases graphes capables de monter à l'échelle horizontalement ne sont pas légion.
+Titan DB est l'une d'elle.
+Elle est construite sur Cassandra et une nouvelle implantation sera intégrée dans DSE 5.0 sous le nom de DSE Graph.
+Je suis donc naturellement allé voir la présentation de Ted Wilmes : « Modeling the IoT with TitanDB and Cassandra ».
+
+Gremlin est une API de requête pour les graphes.
+Il fait parti d'Apache TinkerPop qui est une API standardisante pour les bases graphe.
+Titan est une implantation de TinkerPop 3 qui utilise Cassandra pour stocker les données.
+
+L'internet des objets est constuité d'un grand nombre de choses qui ont des relations entre elles.
+Ce peut être des personnes, des objets, des lieux, des organisations.
+
+Ted prend l'exemple de l'espace constitué de planètes, de satellites, de fusées.
+Si on se concentre sur la fusée:
+
+* Elle est opérée par StarFleet,
+* Pilotée par le Major Tom,
+* De modèle Delta Boster qui est constuit par Acme Rockets,
+* Maintenue par Joyce.
+
+Ce sont là autant de relations entre objets qui sont bien modélisées par un graphe.
+
+Chaque élément peut être décomposable en parties qui sont des choses du système.
+Notre fusée est composée de trois étages, qui sont eux même décomposables en moteurs, réservoirs et calculateurs.
+Un calculateur contient une JVM dont une caractéristique est l'utilisation de la heap.
+Heap qui sera surveillée par une alarme qui notifiera Joyce le cas échéant.
+
+Un système IoT est donc potentiellement un système complexe où les choses sont reliées entre elles.
+Beaucoup d'applications se contentent de suivre des objets indépendants dans des séries temporelles et oublie le graphe des objets.
+Il est préférable que l'ensemble des données soit disponibles dans la même base.
+Il faut donc trouver un moyen de conserver efficacement les timeseries dans le graphe lui-même.
+
+Les besoins sont de supporter un grand nombre d'écritures avec une latence faible et une lecture à faible latence sur les éléments les plus récents.
+
+Deux grand axes sont spécifiques à Titan: la configuration de déploiement et la modélisation.
+
+Concernant le déploiement, par rapport à Cassandra, trois typologies sont possibles:
+
+locale:: Titan et Cassandra s'exécutent sur le même serveur ;
+embarquée:: Titan et Cassandra s'exécutent dans la même JVM ;
+distante:: Titan et Cassandra s'exécutent sur des serveurs différents.
+
+On retrouve les mêmes topologies côté client et on peut aussi se demander si on expose la base de façon générique avec Gremlin ou spécifique via une API REST.
+
+Leur choix a été d'exposé la base sous forme d'API en embarquant Titan dans une application Dropwizard.
+Cassandra étant déployé de façon distante.
+
+Se pose ensuite la question de la modélisation.
+Cassandra est très forte pour stocker les séries temporelles dans une wide row.
+Cependant, il faut prendre en compte le modèle de données de Titan.
+
+Titan stockes les données à raison d'une partition par nœud.
+L'indentifiant du nœud est utilisé comme clé de partition.
+Les propriétés sont stockées naturellement dans des colonnes et les arcs aussi.
+Il faut donc faire attention à la taille des partitions.
+
+Une modélisation naturelle, c'est de créer un nœud par mesure et des nœuds intermédaires (chunk) qui regroupent les mesures d'un intervalle de temps.
+L'avantage, c'est qu'on peu lié une mesure à d'autres éléments.
+L'inconvénient, c'est que pour lire une période, il faut charger autant de partitions que de mesures.
+
+Pour optiser cela, l'idée est de supprimer le nœud de mesure, déplacé ses données dans l'arc qui le reliait au chunk et faire boucler cet arc du chunk sur lui-même.
+Il est alors possible de lire d'un coup toutes les mesures d'un même chunk.
+
+Il faut ensuite faire attention aux nombres de lectures.
+Titan effectue une lecture pour tester l'existance d'un nœud avant de demander les données et il va chercher les données unitairement.
+Il existe cependant des paramètres pour que les données soient lues par lot et éviter les tests d'existence.
+
+Bilan, il est possible de stocker les mesures directement dans le graph et d'obtenir une vue unifiée des données du système.
+Par contre, le stockage n'est pas aussi compact que lors d'un stockage direct d'un timeseries.
+
+http://fr.slideshare.net/twilmes/modeling-the-iot-with-titandb-and-cassandra
+
+=== Recherche geospatiale et multitemporelle avec Stratio
+
+Autre sujet important, la recherche.
+J'ai présenté un retour d'expérience sur une façon de modéliser un mécanisme de recherche multicritère.
+C'est un cas très particulier qui ne marche que si certaines conditions sont remplies.
+
+De façon préférable, on utilisera un moteur de recherche.
+DataStax Enterprise possède un Solr intégré qui marche bien.
+Mais il faut prendre l'offre Max de l'éditeur pour pouvoir l'utiliser.
+Stratio a développé un plugin de Cassandra qui permet de créer des index full text basé sur Lucene.
+Ce n'est pas aussi complet que l'offre Solr, mais ça permet de faire de la recherche avancée.
+
+Ils sont venus présenter son fonctionnement dans le cadre de la recherche Géospatiale et temporelle.
+
+Ils sont partis du constat qu'il y a nativement deux façons d'interroger Cassandra.
+
+* Les applications opérationnelles utilisent la clé primaire
+** Le besoin est la performance en débit et latence
+** Les recherches sont limitées à une partition
+** Il n'est pas possible de combiner les critères
+** Le classement est limité au classement du stockage
+* Les applications analytiques utilisent des plages de tokens
+** Le besoin est l'expressivité des requêts
+** Toute la table est lue
+** Les serveurs sont chargés
+** La latence est importante
+** La concurrence est faible
+
+L'utilisation de recherche Lucene est un compromis pour améliorer l'expressivité de requêtes tout en gardant de bonnes performances.
+
+* Les requêtes ne sont pas aussi rapides qu'une recherche sur la clé primaire.
+* L'expressivité est moins importante qu'avec un Job Map-Reduce ou Spark
+* Mais la recherche peut être utilisée par les applications opérationnelles et analytiques.
+
+Le plugin de Stratio est un simple plugin qu'on ajoute dans le classpath de la version open source de Cassandra.
+Il ajoute un Custom Query Handler qui sait gérer les requêtes.
+On crée un index custom en utilisant +com.statio.cassandra.lucene.Index+ et en précisant le schéma de l'index en option.
+Puis on requête en CQL sur le champ +lucene+ auquel on transmet un JSON de recherche.
+La requête peut très bien être lancée depuis un worker Spark ce qui rend très efficace les traitements analytiques.
+
+Contrairement à Cassandra, Lucene gère les données geospatiales.
+Il est possible de définir un champ Lucene qui représente une position à partir de deux champs de la table.
+On peut ensuite cherche les éléments dans un rectangle ou à une certaine distance d'un point de référence.
+C'est classique, mais ce n'est pas possible autrement avec Cassandra.
+
+De la même façon, il est possible d'indexer des intervalles de dates.
+Composées d'une date de début et d'une date de fin, ils peuvent être comparés par trois opérateurs : +contains+, +is_within+ et +intersects+.
+
+Le même mécanisme peut être étendu aux données bitemporelles.
+Il s'agit de données auquelles sont rattachés deux intervalles:
+
+Le temps-valide:: _(valid time)_ Période de temps pendant laquelle un fait est vraie dans la réalité.
+Le temps-transaction:: _(transaction time)_ Période de temps pendant laquelle un fait est stockée dans la base de données.
+
+Ces informations sont utiles pour les bases d'audit qui permettent de reconstituer l'évolution des faits et de leur connaissance par le système, ainsi que leur décalage.
+C'est utile pour comprendre ultérieurement les causes d'une décision.
+L'auteur prend un exemple de wikipedia
+
+[format=csv, options="header"]
+|===
+person,town,vt_from,vt_to,tt_from,tt_to
+John Doe,Smallville,3-Apr-1975,∞,4-Apr-1975,27-Dec-1994
+John Doe,Smallville,3-Apr-1975,26-Aug-1994,27-Dec-1994,∞
+John Doe,Bigtown,26-Aug-1994,∞,27-Dec-1994,2-Feb-2001
+John Doe,Bigtown,26-Aug-1994,1-Jun-1995,2-Feb-2001,∞
+John Doe,Beachy,1-Jun-1995,3-Sep-2000,2-Feb-2001,∞
+John Doe,Bigtown,3-Sep-2000,∞,2-Feb-2001,1-Apr-2001
+John Doe,Bigtown,3-Sep-2000,1-Apr-2001,1-Apr-2001,∞
+|===
+
+L'utilisation croisée de deux intervalles est inefficace en raison des intervalles non bornés.
+Il ont donc construit un type de champ bitemporal qui s'appuie sur deux DateRangePrefixTree pour simuler des R-Tree non gérés par Lucene.
+
+Il est alors possible de poser très simplement des question du type:
+
+* Où vis John Doe aujourd'hui, selon le système aujourd'hui ?
+* Où vivait John Doe en 1999, selon le système aujourd'hui ?
+* Où vivait John Doe en 1999, selon le système au 1 ^er^  janvier 2015 ?
+
+http://fr.slideshare.net/planetcassandra/stratio-geospatial-and-bitemporal-search-in-cassandra-with-pluggable-lucene-index
+
+== Tester une application Cassandra
+
+== Tunning
+
+Certains exposés abordaient les problémes de tunning de Cassandra.
+Lors des opérations de maintenance, de réglage du driver ou de choix de stratégie de persistance.
+
+=== DateTieredCompationStrategy
+=== Incrémental Repair et Problèmes de corruption du Gossip (Apple)
+=== Cassandra Driver at Scale (Apple)
