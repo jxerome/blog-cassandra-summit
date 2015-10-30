@@ -51,6 +51,7 @@ Evidemment, la démonstration a tourné court.
 Du café renversé, un cyclone, un blender, un singe cahotique venu de chez Netflix, un incendie et l'action de nos pompiers de service ont eu raison du beau cluster.
 La preuve qu'on peut détruire un cluster Cassandra ; mais il faut y mettre du sien.
 
+.keynoteref
 La keynote est visible sur http://youtu.be/QfyRyIW4rYo[YouTube].
 
 == Certification Cassandra
@@ -289,7 +290,7 @@ Il existe cependant des paramètres pour que les données soient lues par lot et
 Bilan, il est possible de stocker les mesures directement dans le graph et d'obtenir une vue unifiée des données du système.
 Par contre, le stockage n'est pas aussi compact que lors d'un stockage direct d'un timeseries.
 
-http://fr.slideshare.net/twilmes/modeling-the-iot-with-titandb-and-cassandra
+http://fr.slideshare.net/twilmes/modeling-the-iot-with-titandb-and-cassandra[Le diaporama]
 
 === Recherche geospatiale et multitemporelle avec Stratio
 
@@ -347,7 +348,7 @@ Le temps-transaction:: _(transaction time)_ Période de temps pendant laquelle u
 
 Ces informations sont utiles pour les bases d'audit qui permettent de reconstituer l'évolution des faits et de leur connaissance par le système, ainsi que leur décalage.
 C'est utile pour comprendre ultérieurement les causes d'une décision.
-L'auteur prend un exemple de wikipedia
+L'auteur prend un exemple de wikipedia :
 
 [format=csv, options="header"]
 |===
@@ -361,18 +362,52 @@ John Doe,Bigtown,3-Sep-2000,∞,2-Feb-2001,1-Apr-2001
 John Doe,Bigtown,3-Sep-2000,1-Apr-2001,1-Apr-2001,∞
 |===
 
-L'utilisation croisée de deux intervalles est inefficace en raison des intervalles non bornés.
-Il ont donc construit un type de champ bitemporal qui s'appuie sur deux DateRangePrefixTree pour simuler des R-Tree non gérés par Lucene.
-
-Il est alors possible de poser très simplement des question du type:
+On cherche à répondre à des questions du type:
 
 * Où vis John Doe aujourd'hui, selon le système aujourd'hui ?
 * Où vivait John Doe en 1999, selon le système aujourd'hui ?
 * Où vivait John Doe en 1999, selon le système au 1 ^er^  janvier 2015 ?
 
-http://fr.slideshare.net/planetcassandra/stratio-geospatial-and-bitemporal-search-in-cassandra-with-pluggable-lucene-index
+La coordination de critères indépendant sur chaque intervalle est inefficace en raison des intervalles non bornés qui donnent des résultats intermédiaires trop grands.
+Ils ont donc construit un type de champ bitemporal qui s'appuie sur deux DateRangePrefixTree pour simuler des R-Tree non gérés par Lucene.
+La recherche devient aussi facile que d'indiquer les quatres valeurs des deux intervalles.
+
+http://fr.slideshare.net/planetcassandra/stratio-geospatial-and-bitemporal-search-in-cassandra-with-pluggable-lucene-index[Le diaporama]
+
+Un collègue a déjà travaillé avec le plugin lucene de stratio, il a un retour d'expérience assez positif.
+C'est certainement une solution à envisager et à tester lorsqu'on a besoin de recherche avancée avec Cassandra.
 
 == Tester une application Cassandra
+
+Ecrire des tests unitaires et des tests d'intégration automatiques avec nos applications est devenue une évidence.
+Le seul débat qui résiste à l'usure du temps est la grande question de savoir s'il faut les écrire avant ou après.
+Débat qui va rejoindre la liste fermée des grands débats historiques dont font partie la taille des indians et la prononciation tirebouchschtroumpf ou schtroumpfbouchon.
+
+Seulement, comme nous le rappelle Christopher Batey, les tests se limitent souvent au cas heureux.
+C'est-à-dire qu'on teste les cas de fonctionnement normal de l'application, mais que les cas d'erreurs sont souvents oubliés.
+Et pourtant, votre base peut rencontrer des problèmes qu'il faut gérer.
+En un mot, elle doit être Patrick McFadin proof ! footnote:[Voir le début de la <<keynoteref,keynote>>]
+
+Tout d'abord, il faut réaliser les tests avec un vrai cluster.
+Souvent un seul nœud est utilisé, or le comportement sera très différent avec un cluster complet et un CL en QUORUM.
+Pareil si la production est répartie sur plusieurs datacenters, le test d'intégration doit utiliser plusieurs DC.
+
+Ensuite, il faut comprendre les retours du driver en cas d'erreur.
+Notamment les informations qui sont fournie au +RetryPolicy+.
+Ce que je retiens de la présentation, c'est que malgré mon expérience sur le sujet, je n'ai pas encore tout compris sur les subtilités de informations.
+
+Le truc le plus important à retenir, c'est que lorsqu'une écriture en QUORUM échoue, il n'y a pas de rollback.
+Et donc, il n'est pas utile de réessayer en diminuant le quorum car on a déjà une écriture équivalente à ONE.
+
+Si on pense souvent à la panne d'un ou de tous les nœuds qui portent les données, il faut aussi penser au cas de défaillance du coordinateur.
+Celui-ci peut tomber sans répondre.
+
+On sais facilement tester les 
+
+
+Notamment, la politique
+
+http://fr.slideshare.net/planetcassandra/datastax-making-cassandra-fail-for-effective-testing[Le diaporama]
 
 == Tunning
 
