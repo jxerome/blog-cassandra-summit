@@ -350,16 +350,16 @@ Ces informations sont utiles pour les bases d'audit qui permettent de reconstitu
 C'est utile pour comprendre ultérieurement les causes d'une décision.
 L'auteur prend un exemple de wikipedia :
 
-[format=csv, options="header"]
+[options="header"]
 |===
-person,town,vt_from,vt_to,tt_from,tt_to
-John Doe,Smallville,3-Apr-1975,∞,4-Apr-1975,27-Dec-1994
-John Doe,Smallville,3-Apr-1975,26-Aug-1994,27-Dec-1994,∞
-John Doe,Bigtown,26-Aug-1994,∞,27-Dec-1994,2-Feb-2001
-John Doe,Bigtown,26-Aug-1994,1-Jun-1995,2-Feb-2001,∞
-John Doe,Beachy,1-Jun-1995,3-Sep-2000,2-Feb-2001,∞
-John Doe,Bigtown,3-Sep-2000,∞,2-Feb-2001,1-Apr-2001
-John Doe,Bigtown,3-Sep-2000,1-Apr-2001,1-Apr-2001,∞
+|person|town|vt_from|vt_to|tt_from|tt_to
+|John Doe|Smallville|3-Apr-1975|∞|4-Apr-1975|27-Dec-1994
+|John Doe|Smallville|3-Apr-1975|26-Aug-1994|27-Dec-1994|∞
+|John Doe|Bigtown|26-Aug-1994|∞|27-Dec-1994|2-Feb-2001
+|John Doe|Bigtown|26-Aug-1994|1-Jun-1995|2-Feb-2001|∞
+|John Doe|Beachy|1-Jun-1995|3-Sep-2000|2-Feb-2001|∞
+|John Doe|Bigtown|3-Sep-2000|∞|2-Feb-2001|1-Apr-2001
+|John Doe|Bigtown|3-Sep-2000|1-Apr-2001|1-Apr-2001|∞
 |===
 
 On cherche à répondre à des questions du type:
@@ -402,7 +402,7 @@ Et donc, il n'est pas utile de réessayer en diminuant le quorum car on a déjà
 Si on pense souvent à la panne d'un ou de tous les nœuds qui portent les données, il faut aussi penser au cas de défaillance du coordinateur.
 Celui-ci peut tomber sans répondre.
 
-On sais facilement tester les 
+On sais facilement tester les
 
 
 Notamment, la politique
@@ -415,5 +415,7 @@ Certains exposés abordaient les problémes de tunning de Cassandra.
 Lors des opérations de maintenance, de réglage du driver ou de choix de stratégie de persistance.
 
 === DateTieredCompationStrategy
+
 === Incrémental Repair et Problèmes de corruption du Gossip (Apple)
+
 === Cassandra Driver at Scale (Apple)
